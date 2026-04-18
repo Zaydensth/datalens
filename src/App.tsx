@@ -45,6 +45,15 @@ function MiniSpark({ data, color }: { data: number[]; color: string }) {
   return <svg viewBox="0 0 50 18"><polyline points={pts} fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" /></svg>;
 }
 
+/* SVG Icons */
+const Ic = {
+  logo: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>,
+  eye: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+  users: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
+  clock: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+  trending: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>,
+};
+
 export default function App() {
   const [range, setRange] = useState<typeof ranges[number]>('7D');
 
@@ -72,7 +81,7 @@ export default function App() {
       {/* Header */}
       <div className="header">
         <div className="header-left">
-          <div className="logo-icon">📊</div>
+          <div className="logo-icon">{Ic.logo}</div>
           <div>
             <h1>DataLens</h1>
             <p>Analytics Overview</p>
@@ -88,10 +97,10 @@ export default function App() {
       {/* Metrics */}
       <div className="metrics">
         {[
-          { icon: '👁️', label: 'Page Views', value: total.toLocaleString(), change: 12.5 },
-          { icon: '👥', label: 'Unique Visitors', value: Math.floor(total * 0.62).toLocaleString(), change: 8.3 },
-          { icon: '⏱️', label: 'Avg. Session', value: '3m 42s', change: -2.1 },
-          { icon: '📈', label: 'Bounce Rate', value: '34.2%', change: -5.4 },
+          { icon: Ic.eye, label: 'Page Views', value: total.toLocaleString(), change: 12.5 },
+          { icon: Ic.users, label: 'Unique Visitors', value: Math.floor(total * 0.62).toLocaleString(), change: 8.3 },
+          { icon: Ic.clock, label: 'Avg. Session', value: '3m 42s', change: -2.1 },
+          { icon: Ic.trending, label: 'Bounce Rate', value: '34.2%', change: -5.4 },
         ].map(m => (
           <div key={m.label} className="metric">
             <div className="metric-top">
